@@ -7,7 +7,7 @@
  */
 /* ************************************************************************** */
 
-#include <xc.h>
+#include "uart.h"
 
 void uart1_setup(void)
 {   
@@ -24,7 +24,7 @@ void uart1_setup(void)
     U1STAbits.URXEN = 1;
     
     // Enable UART (ON bit)
-    U1MODEbits.UARTEN = 1;
+    U1MODEbits.ON = 1;
 
     __XC_UART = 1;              // Code is configured to use UART1 for printf()
 }
