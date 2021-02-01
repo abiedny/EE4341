@@ -13,8 +13,9 @@
 #include <xc.h>
 #include <stdint.h>
 #include <stdlib.h>
-#include<stdio.h>
 #include <sys/attribs.h>
+
+#include "uart.h"
 
 #define LED1        LATDbits.LATD0
 #define LED2        LATDbits.LATD1
