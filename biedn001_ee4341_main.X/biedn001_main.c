@@ -19,7 +19,7 @@ void setup(void)
 int main(void)
 {
     setup();
-    delay(1);                  // 100 ms delay as precaution
+    delay(100);                  // 100 ms delay as precaution
 
     while(1)
     { 

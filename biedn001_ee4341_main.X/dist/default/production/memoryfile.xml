@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?> 
 <project>                                  
-  <executable name="dist/default/debug/biedn001_ee4341_main.X.debug.elf">                 
+  <executable name="dist/default/production/biedn001_ee4341_main.X.production.elf">                 
     <memory name="program">                 
       <units>bytes</units>                 
       <length>531968</length>                 
-      <used>2892</used>                     
-      <free>529076</free>                     
+      <used>5100</used>                     
+      <free>526868</free>                     
     </memory>                              
     <memory name="data">              
       <units>bytes</units>                 
       <length>131072</length>                 
-      <used>512</used>                     
-      <free>130560</free>                     
+      <used>372</used>                     
+      <free>130700</free>                     
     </memory>                              
   </executable>                            
 </project>                                 

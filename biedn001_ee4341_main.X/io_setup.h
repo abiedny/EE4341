@@ -13,6 +13,7 @@
 #include <xc.h>
 #include <stdint.h>
 #include <stdlib.h>
+#include<stdio.h>
 #include <sys/attribs.h>
 
 #define LED1        LATDbits.LATD0

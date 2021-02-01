@@ -130,10 +130,12 @@ void io_setup(void)
     system_reg_unlock();            // unlock PPS
     CFGCONbits.IOLOCK = 0;
 	
- 	// Your code here  	
+ 	// UART1 RX = RF4; TX = RF5
+    U1RXRbits.U1RXR = 0b0010;
+    RPF5Rbits.RPF5R = 0b0011;
 
     CFGCONbits.IOLOCK = 1;          // lock   PPS
-    system_reg_lock; 
+    system_reg_lock(); 
 
 }
 
@@ -154,14 +156,17 @@ void button_on(int x)
     {
         LED1 = 1;
 	// whatever else you want to do if button 1 is pressed
+        printf("Button 1\n");
     }
     else if (x == 2)
     {
         LED2 = 1;
+        printf("Button 2\n");
     }
     else if (x == 3)
     {
         LED3 = 1;
+        puts("\033[3B");
     }
 }
 
@@ -196,11 +201,11 @@ void buttons(void)
     }
     if (BUTTON2 != lastBtn2State) {
         delay(10);
-        lastBtn2State - BUTTON2;
+        lastBtn2State = BUTTON2;
     }
     if (BUTTON3 != lastBtn3State) {
         delay(10);
-        lastBtn3State - BUTTON3;
+        lastBtn3State = BUTTON3;
     }
     
     if (!BUTTON1)
