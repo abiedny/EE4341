@@ -131,12 +131,13 @@ void io_setup(void)
     CFGCONbits.IOLOCK = 0;
 	
  	// UART1 RX = RF4; TX = RF5
-    U1RXRbits.U1RXR = 0b0010;
-    RPF5Rbits.RPF5R = 0b0011;
+    U1RXRbits.U1RXR = 0x0002;
+    RPF5Rbits.RPF5R = 0x0003;
 
     CFGCONbits.IOLOCK = 1;          // lock   PPS
     system_reg_lock(); 
 
+    uart1_setup();
 }
 
 void delay(int ms) {
@@ -150,23 +151,35 @@ void delay(int ms) {
     }
 }
 
+int isPrinted1 = 0;
+int isPrinted2 = 0;
+int isPrinted3 = 0;
 void button_on(int x)
 {
     if (x == 1)
     {
         LED1 = 1;
 	// whatever else you want to do if button 1 is pressed
-        printf("Button 1\n");
+        if (!isPrinted1) {
+            printf("Button 1\n\r");
+            isPrinted1 = 1;
+        }
     }
     else if (x == 2)
     {
         LED2 = 1;
-        printf("Button 2\n");
+        if (!isPrinted2) {
+            printf("Button 2\n\r");
+            isPrinted2 = 1;
+        }
     }
     else if (x == 3)
     {
         LED3 = 1;
-        puts("\033[3B");
+        if (!isPrinted3) {
+            puts("\033[1B");
+            isPrinted3 = 1;
+        }
     }
 }
 
@@ -175,14 +188,17 @@ void button_off(int x)
     if (x == 1)
     {
         LED1 = 0;
+        isPrinted1 = 0;
     }
     else if (x == 2)
     {
         LED2 = 0;
+        isPrinted2 = 0;
     }
     else if (x == 3)
     {
         LED3 = 0;
+        isPrinted3 = 0;
     }
 }
 
@@ -242,4 +258,6 @@ void buttons(void)
 
 /* *****************************************************************************
  End of File
+ */
+
  */
