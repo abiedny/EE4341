@@ -143,6 +143,8 @@ void io_setup(void)
     system_reg_lock(); 
 
     uart1_setup();
+    spi2_setup();
+    accel_setup();
 }
 
 void delay(int ms) {
@@ -266,3 +268,4 @@ void buttons(void)
 /* *****************************************************************************
  End of File
  */
+
