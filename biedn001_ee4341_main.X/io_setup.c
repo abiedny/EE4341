@@ -133,8 +133,13 @@ void io_setup(void)
  	// UART1 RX = RF4; TX = RF5
     U1RXRbits.U1RXR = 0x0002;
     RPF5Rbits.RPF5R = 0x0003;
+    
+    // SPI2 SDI2 = RG7; SDO2 = RG8; SS2 = RG9
+    SDI2Rbits.SDI2R = 0x0001;
+    RPG8Rbits.RPG8R = 0b0110;
+    RPG9Rbits.RPG9R = 0b0110;
 
-    CFGCONbits.IOLOCK = 1;          // lock   PPS
+    CFGCONbits.IOLOCK = 1;          // lock PPS
     system_reg_lock(); 
 
     uart1_setup();
@@ -177,6 +182,8 @@ void button_on(int x)
     {
         LED3 = 1;
         if (!isPrinted3) {
+            puts("\033[1B");
+            puts("\033[1B");
             puts("\033[1B");
             isPrinted3 = 1;
         }
@@ -258,6 +265,4 @@ void buttons(void)
 
 /* *****************************************************************************
  End of File
- */
-
  */
