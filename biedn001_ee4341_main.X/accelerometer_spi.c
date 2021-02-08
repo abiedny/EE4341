@@ -1,4 +1,4 @@
-#include "accelerommeter_spi.h"
+#include "accelerometer_spi.h"
 
 void spi2_setup(void)
 {
@@ -6,7 +6,7 @@ void spi2_setup(void)
     TRISGbits.TRISG9 = 0x0000;	    // set Accelerometer Chip Select as an output
     
     // disable chip select "ACCEL_CS"
-    ACCEL_CS = 0;
+    ACCEL_CS = 1;
         
     // clear SPI2CON register
     // clear SPI2BUF register
@@ -46,7 +46,7 @@ void spi2_write_register(uint8_t address, uint8_t data)
     delay(1);
 
     // enable accelerometer chip select
-    ACCEL_CS = 1;
+    ACCEL_CS = 0;
 
     // send "write_frame" to the SPI2 buffer
     SPI2BUF = write_frame;
@@ -55,7 +55,7 @@ void spi2_write_register(uint8_t address, uint8_t data)
     // clear SPI2 buffer using the "trash" variable                                        
     trash = SPI2BUF;
     // disable accelerometer chip select
-    ACCEL_CS = 0;
+    ACCEL_CS = 1;
 }
 
 int16_t spi2_read_register(uint8_t address)
@@ -68,7 +68,7 @@ int16_t spi2_read_register(uint8_t address)
     delay(1);
 
     // enable accelerometer chip select
-    ACCEL_CS = 1;
+    ACCEL_CS = 0;
 
     // send "read_frame to SPI2 buffer          
     SPI2BUF = read_frame;
@@ -77,7 +77,7 @@ int16_t spi2_read_register(uint8_t address)
     // read the SPI2 buffer contents with the "value" variable                                      
      value = SPI2BUF;
     // disable accelerometer chip select
-     ACCEL_CS = 0;
+     ACCEL_CS = 1;
      
     return value;
 }
@@ -109,7 +109,11 @@ float accel_read_x(void)
    // Combine data from both registers
    // See Lab2 manual for instructions
    X = ( (X_H << 8) & 0xF0) | (X_L & 0x0F);
-
+   
+   printf(" X_L: %i END ", X_L);
+   printf(" X_H: %i END ", X_H);
+   printf(" X: %i END ", X);
+   
    float value = X * 0.000061;            // Convert to units of g
    return value;
 }
