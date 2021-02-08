@@ -9,27 +9,6 @@
 
 #include "io_setup.h"
 
-
-void setup(void)
-{
-    io_setup();
-    // include any other setup functions here
-}
-
-int main(void)
-{
-    setup();
-    delay(100);                  // 100 ms delay as precaution
-
-    while(1)
-    { 
-        buttons();
-        test_accel();
-    }
-
-    return 0;
-}
-
 void test_accel(void)
 {   
     putchar(' ');
@@ -38,11 +17,11 @@ void test_accel(void)
     
     if (test == 0x0033)
     {
-        printf("Pass");
+        printf("\n\r\n\r\n\rPass\n\r");
     }
     else
     {
-        printf("Fail");
+        printf("Fail\n\r");
     }
 }
 
@@ -60,12 +39,12 @@ void accel_print_data(char axis)
     }
     else if (axis == 'z')
     {
-        data = accel_read_x();
+        data = accel_read_z();
     }
     
     char buffer[50]; 
     sprintf(buffer, "%f", data); 
-    printf("%s \n", buffer);
+    printf("%s", buffer);
 }
 
 void accel_move_cursor(void)
@@ -81,7 +60,35 @@ void accel_move_cursor(void)
     
 }
 
+void setup(void)
+{
+    io_setup();
+    // include any other setup functions here
+}
+
+int main(void)
+{
+    setup();
+    delay(100);                  // 100 ms delay as precaution
+    test_accel();
+    
+    while(1)
+    { 
+        delay(1);
+        printf("X: ");
+        accel_print_data('x');
+        printf("    Y: ");
+        accel_print_data('y');
+        printf("    Z: ");
+        accel_print_data('z');
+        printf("\n\r");
+        buttons();
+    }
+
+    return 0;
+}
 
 /* *****************************************************************************
  End of File
  */
+
