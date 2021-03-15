@@ -8,7 +8,7 @@
 /* ************************************************************************** */
 
 // DEVCFG3
-#pragma config FSRSSEL = PRIORITY_7    // Shadow Register Set Priority Select->SRS Priority 7
+/*#pragma config FSRSSEL = PRIORITY_7    // Shadow Register Set Priority Select->SRS Priority 7
 #pragma config PMDL1WAY = ON           // Peripheral Module Disable Configuration->Allow only one reconfiguration
 #pragma config IOL1WAY = ON            // Peripheral Pin Select Configuration->Allow only one reconfiguration
 #pragma config FUSBIDIO = ON           // USB USID Selection->Controlled by the USB Module
@@ -40,7 +40,7 @@
 #pragma config ICESEL = ICS_PGx2       // ICE/ICD Comm Channel Select->Communicate on PGEC2/PGED2
 #pragma config PWP = OFF               // Program Flash Write Protect->Disable
 #pragma config BWP = OFF               // Boot Flash Write Protect bit->Protection Disabled
-#pragma config CP = OFF                // Code Protect->Protection Disabled
+#pragma config CP = OFF   */             // Code Protect->Protection Disabled
 
 // SYSCLK = 80MHz, PBCLK = 40MHz //
 
@@ -147,7 +147,7 @@ void io_setup(void)
     accel_setup();
 }
 
-void delay(int ms) {
+void delayms(int ms) {
     int j;
     for (j = 0; j < ms; j++) {
         // 1 ms delay
@@ -221,15 +221,15 @@ void buttons(void)
     
     // If button changes state, give it a few ms to bounce before measuring again
     if (BUTTON1 != lastBtn1State) {
-        delay(10); //TODO: Tweak time?
+        delayms(10); //TODO: Tweak time?
         lastBtn1State = BUTTON1;
     }
     if (BUTTON2 != lastBtn2State) {
-        delay(10);
+        delayms(10);
         lastBtn2State = BUTTON2;
     }
     if (BUTTON3 != lastBtn3State) {
-        delay(10);
+        delayms(10);
         lastBtn3State = BUTTON3;
     }
     

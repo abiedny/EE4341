@@ -27,7 +27,7 @@
 void system_reg_unlock(void);
 void system_reg_lock(void);
 void io_setup(void);
-void delay(int ms);                 // *only edit if clock changes* Delay function in ms   
+void delayms(int ms);                 // *only edit if clock changes* Delay function in ms   
 void buttons(void);                 // *DO NOT EDIT* Polls buttons and calls button_off/on
 
 #endif /* _IO_SETUP_H */

@@ -8,6 +8,7 @@
 /* ************************************************************************** */
 
 #include "io_setup.h"
+#include "biedn001_accelerometer_spi.h"
 
 void test_accel(void)
 {   
@@ -66,15 +67,15 @@ void setup(void)
     // include any other setup functions here
 }
 
-int main(void)
+/*int main(void)
 {
     setup();
-    delay(100);                  // 100 ms delay as precaution
+    delayms(100);                  // 100 ms delay as precaution
     test_accel();
     
     while(1)
     { 
-        delay(1);
+        delayms(1);
         printf("X: ");
         accel_print_data('x');
         printf("    Y: ");
@@ -86,7 +87,7 @@ int main(void)
     }
 
     return 0;
-}
+}*/
 
 /* *****************************************************************************
  End of File
